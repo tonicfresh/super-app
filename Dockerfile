@@ -76,8 +76,9 @@ COPY --from=frontend-build /app/template/frontend/dist ./public/
 COPY --from=deps /app/node_modules ./node_modules/
 COPY --from=deps /app/template/backend/node_modules ./template-node_modules/
 
-# Statische Dateien
-COPY template/backend/static ./static/ 2>/dev/null || true
+# Statische Dateien (optional — nur kopieren wenn vorhanden)
+RUN mkdir -p ./static
+COPY --from=backend-build /app/template/backend/static ./static/
 
 ENV NODE_ENV=production
 ENV PORT=3100
