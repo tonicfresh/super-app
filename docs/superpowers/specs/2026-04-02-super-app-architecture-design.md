@@ -35,27 +35,27 @@ The Super App is a modular, scalable application platform built on a sub-reposit
 - **Consistency**: Identical structure, patterns, and conventions across all modules
 - **No Overengineering**: One PostgreSQL, one server process, AI SDK handles orchestration
 
-### Tech Stack
+### Tech Stack (Stand: 2026-04-02)
 
-| Layer | Technology |
-|-------|-----------|
-| **Runtime** | Bun |
-| **Backend Framework** | Hono.js (via fullstack-framework) |
-| **Frontend Framework** | Vue 3 (SPA) |
-| **CSS** | Tailwind CSS v4 |
-| **Component Library** | PrimeVue + Volt theme |
-| **State Management** | Pinia |
-| **Routing** | Vue Router |
-| **i18n** | vue-i18n |
-| **Validation** | Valibot (shared frontend + backend) |
-| **Database** | PostgreSQL + pgvector |
-| **ORM** | Drizzle ORM |
-| **AI SDK** | Vercel AI SDK (ToolLoopAgent, tool(), streamText) |
-| **AI Providers** | Anthropic, Mistral, OpenRouter (configurable) |
-| **Auth** | JWT + Hanko (WebAuthn/Passkey) |
-| **Charts** | ApexCharts (vue3-apexcharts) |
-| **Icons** | Iconify (unplugin-icons) |
-| **Testing** | bun:test + Framework test utilities |
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| **Runtime** | Bun | 1.2.10 |
+| **Backend Framework** | Hono.js (via fullstack-framework) | 4.12.10 |
+| **Frontend Framework** | Vue 3 (SPA) | 3.5.31 |
+| **CSS** | Tailwind CSS v4 | 4.2.2 |
+| **Component Library** | PrimeVue + Volt theme | 4.5.4 |
+| **State Management** | Pinia | 3.0.4 |
+| **Routing** | Vue Router | 4.6.4 |
+| **i18n** | vue-i18n | 11.3.0 |
+| **Validation** | Valibot (shared frontend + backend) | 1.3.1 |
+| **Database** | PostgreSQL + pgvector | 17.9 + 0.8.2 |
+| **ORM** | Drizzle ORM | 0.45.2 |
+| **AI SDK** | Vercel AI SDK (ToolLoopAgent, tool(), streamText) | 6.0.143 |
+| **AI Providers** | Anthropic, Mistral, OpenRouter (configurable) | — |
+| **Auth** | JWT + Hanko (WebAuthn/Passkey) | — |
+| **Charts** | ApexCharts (vue3-apexcharts) | — |
+| **Icons** | Iconify (unplugin-icons) | — |
+| **Testing** | bun:test + Framework test utilities | — |
 
 ---
 
