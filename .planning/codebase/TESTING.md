@@ -369,12 +369,14 @@ it("should reject invalid data", () => {
 
 ## Test Statistics
 
-- **Total test files:** 127+
-- **Frontend tests:** 10 test files (composables, routes, stores, theme)
-- **Backend framework tests:** 50+ test files (auth, database, knowledge, jobs, routes, etc.)
-- **Backend app tests:** 25+ test files (AI system, cost tracking, module registry, auth, settings)
-- **Module tests:** 15+ test files (todos, mission-control)
-- **Shared tests:** 3+ test files (cost tracking, types, guardrails)
+- **Total test files:** ~123
+- **Backend framework tests:** ~63 test files (auth, database, knowledge, jobs, routes, etc.) — **Hinweis: Framework ist ein Sub-Submodule, diese Tests gehoeren nicht zur Super-App selbst**
+- **Backend app tests:** ~32 test files (AI system, cost tracking, module registry, auth, settings)
+- **Module tests:** ~10 test files (todos, mission-control)
+- **Frontend tests:** ~10 test files (composables, routes, stores, theme)
+- **Shared tests:** ~8 test files (cost tracking, types, guardrails)
+
+**Wichtig:** Ueber die Haelfte der Tests (63 von 123) stammen aus dem Framework-Submodule, nicht aus der Super-App. Die Super-App selbst hat ~60 eigene Testdateien.
 
 ## Test Quality Observations
 

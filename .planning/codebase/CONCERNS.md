@@ -76,7 +76,7 @@ export async function checkUserPermission(c: Context, next: Function) {
 **Fix Approach:**
 1. Restore permission checking logic against permissions table (Phase 2)
 2. Wire to tenant admin routes via `isTenantAdmin` utility (already imported in index.ts)
-3. Add permission cache to avoid N+1 queries (leverage Redis cache infrastructure)
+3. Add permission cache to avoid N+1 queries (leverage existing Redis/Valkey cache in `framework/src/lib/utils/redis-cache.ts`, falls back to in-memory Map)
 
 ---
 
@@ -252,21 +252,22 @@ const { usersEmail, usersId } = await verifyHankoToken(c);
 
 ## Performance Bottlenecks
 
-### 1. JWT Token Validation Cache May Be Insufficient
+### 1. Token Validation Cache TTL
 
-**Issue:** Redis cache for validated JWT tokens uses no TTL configuration.
+**Issue:** Redis/Valkey cache for validated Hanko tokens uses 1-hour TTL, but JWT tokens may not have matching expiration.
 
-**Files:** `template/backend/framework/src/lib/utils/hono-middlewares.ts` (line 20-27)
+**Files:** `template/backend/framework/src/lib/utils/redis-cache.ts`, `template/backend/framework/src/lib/auth/hanko.ts`
 
-**Problem:**
-- `getCachedToken` returns stale tokens indefinitely
-- Token revocation not reflected until Redis eviction
-- Cache pollution if many invalid tokens attempted
+**Note:** Redis cache IS implemented (`redis-cache.ts`) with graceful fallback to in-memory Map. Hanko tokens cached with 1h TTL via `setCachedToken()`.
+
+**Remaining Problem:**
+- Token revocation not reflected until TTL expires (1 hour window)
+- Cache pollution if many invalid tokens attempted (in-memory fallback has no eviction)
 
 **Improvement Path:**
-1. Add TTL to cached tokens matching JWT expiration
+1. Verify TTL matches actual Hanko token expiration
 2. Implement token revocation list for early logout
-3. Use Redis with appropriate eviction policy
+3. Add max-size limit to in-memory fallback Map
 
 ---
 
@@ -468,16 +469,16 @@ registry.register(missionControlPlugin);
 
 ### 3. Bun Version Lockfile Incompatibility
 
-**Risk:** Bun lockfiles incompatible across versions (1.2.10 vs 1.3.11).
+**Risk:** Bun lockfiles incompatible across major versions.
 
 **Impact:**
-- CI/Docker failures if Bun auto-upgrades
-- Lockfile conflicts in team development
+- CI/Docker failures if local Bun version diverges from Docker-pinned version
+- Lockfile conflicts if team members use different Bun versions
 
 **Mitigation Applied:** Pin Bun version in Dockerfile (`FROM oven/bun:1.2.10`)
 
 **Ongoing Risk:**
-1. Regular Bun version audits needed
+1. Lokale Bun-Version muss mit Docker-Version uebereinstimmen (aktuell 1.2.10)
 2. Pre-upgrade testing before major version bumps
 3. Document lockfile regeneration process for team
 

@@ -10,15 +10,15 @@
 
 ## Tech Stack (Stand: 2026-04-02)
 
-### Backend
+### Backend (`template/backend/package.json`)
 | Paket | Version |
 |-------|---------|
 | Bun | 1.2.10 |
-| Hono.js | 4.12.10 |
-| Drizzle ORM | 0.45.2 |
+| Hono.js | 4.10.1 |
+| Drizzle ORM | 0.44.6 |
 | Vercel AI SDK | 6.0.143 |
 | Valibot | 1.3.1 |
-| pg | 8.20.0 |
+| pg | 8.16.3 |
 | drizzle-kit | 0.31.10 |
 
 ### Frontend

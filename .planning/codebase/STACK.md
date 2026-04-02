@@ -23,18 +23,18 @@
 
 ## Frameworks
 
-**Backend:**
+**Backend** (versions from `template/backend/package.json`)**:**
 - Hono.js 4.10.1 - Lightweight, edge-computing ready HTTP framework
 - hono-openapi 1.1.0 - OpenAPI/Swagger integration for Hono
 - @hono/swagger-ui 0.5.2 - Swagger UI middleware
 
-**Frontend:**
+**Frontend** (versions from `template/frontend/package.json`, may differ from backend)**:**
 - Vue 3 3.5.31 - Progressive framework with composition API
 - Vite (rolldown-vite latest) - Next-gen build tool
 - Tailwind CSS 4.2.2 - Utility-first CSS framework
 - PrimeVue 4.5.4 - Component library
 
-**ORM & Data Access:**
+**ORM & Data Access** (backend: 0.44.6, frontend: ^0.45.2 — versions diverge)**:**
 - Drizzle ORM 0.44.6 - Type-safe SQL query builder
 - drizzle-kit 0.31.10 - Migration and schema generation CLI
 - pg 8.16.3 - PostgreSQL client

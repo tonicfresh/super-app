@@ -22,10 +22,13 @@
   - Default model: `deepseek/deepseek-coder` (code analysis)
 
 **Provider Selection:**
+- **Direkte SDK-Calls** (NICHT über ai-proxy) — Provider werden direkt via `createAnthropic()`, `createMistral()`, `createOpenRouter()` instanziiert
 - Runtime configuration via `template/backend/src/ai/providers.ts:createProviders()`
+- API Keys aus Framework-Secrets-Tabelle geladen (nicht aus ai-proxy)
 - Models mapped by task type: chat, summarization, code-analysis, embeddings
 - Fallback: API keys checked at startup; missing providers are silently disabled
 - Settings schema: `template/backend/src/settings/settings-schema.ts` (ANTHROPIC_API_KEY, MISTRAL_API_KEY, OPENROUTER_API_KEY)
+- **Hinweis:** Laut globaler CLAUDE.md sollten alle KI-Calls über ai-proxy gehen — das ist hier NICHT der Fall und muesste in einer spaeteren Phase integriert werden
 
 ## Data Storage
 
@@ -54,25 +57,30 @@
 - No presigned URL generation observed in templates
 
 **In-Memory/Cache:**
-- No Redis or external cache detected
-- State persisted to PostgreSQL only
+- Redis/Valkey support via `template/backend/framework/src/lib/utils/redis-cache.ts`
+- Used for Hanko token validation caching (1-hour TTL)
+- Env vars: `REDIS_URL` or `VALKEY_URL`
+- Graceful fallback: If Redis unavailable, falls back to in-memory `Map` cache
+- Not a hard dependency — works without Redis in development
 
 ## Authentication & Identity
 
-**Auth Provider:**
-- Custom implementation via fullstack-framework
-- Location: `template/backend/framework/src/lib/auth/`
-- JWT-based: JWT_PUBLIC_KEY, JWT_PRIVATE_KEY environment variables
-- Tenant-scoped: Authentication middleware in `template/backend/src/auth/`
+**Auth Provider: Hanko (WebAuthn/Passkey)**
+- Hanko API integration via `template/backend/framework/src/lib/auth/hanko.ts`
+- Config: `template/backend/src/auth/hanko-config.ts` → `createHankoConfig()` with `authType: "hanko"`
+- Token validation: `verifyHankoToken()` calls `${HANKO_API_URL}/sessions/validate`
+- Tokens read from Bearer header or "hanko" cookie
+- User creation/upsert uses Hanko's validated email and user_id (`provider: "hanko"`)
+- Token cache: Redis with 1h TTL (fallback to in-memory Map)
 
-**Features:**
+**Additional Auth:**
+- JWT signing: JWT_PUBLIC_KEY, JWT_PRIVATE_KEY environment variables
 - Module-level auth middleware (`template/backend/src/auth/module-auth-middleware.ts`)
 - Tenant isolation in request context
-- Email validation via Valibot
-- Credentials stored encrypted in database (SECRETS_AES_KEY, SECRETS_AES_IV for encryption)
+- Invitation codes for new user signup (`template/backend/src/auth/invitation-codes.ts`)
 
 **Password/Key Management:**
-- API keys stored as settings in encrypted `base_settings` table
+- API keys stored as settings in encrypted `base_settings` table (SECRETS_AES_KEY, SECRETS_AES_IV)
 - No plain-text secrets in codebase (all injected via environment)
 
 ## Email & Messaging

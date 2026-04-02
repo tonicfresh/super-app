@@ -126,12 +126,8 @@ super-app/                                  # Monorepo root (Bun workspaces)
 │   │   │   │   ├── main.ts                 # Standalone entry
 │   │   │   │   ├── module.ts               # Integrated entry (routes, nav, permissions)
 │   │   │   │   ├── views/
-│   │   │   │   │   ├── CostsDashboard.vue  # Charts: costs over time, per module
-│   │   │   │   │   ├── SessionHistory.vue  # Agent session timeline
-│   │   │   │   │   └── AuditLog.vue        # Audit trail viewer
-│   │   │   │   ├── components/
-│   │   │   │   │   ├── CostChart.vue       # D3.js cost visualization
-│   │   │   │   │   └── SessionDetails.vue  # Drill-down view
+│   │   │   │   │   └── CostTracker.vue     # Cost tracking view
+│   │   │   │   ├── components/             # (weitere Views geplant: SessionHistory, AuditLog)
 │   │   │   │   └── stores/
 │   │   │   │       └── missions.ts         # Mission Control state
 │   │   │   ├── package.json
