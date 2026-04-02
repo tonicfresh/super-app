@@ -4,7 +4,7 @@
 # ============================================================
 
 # --- Stage 1: Dependencies installieren ---
-FROM oven/bun:1 AS deps
+FROM oven/bun:1.2.10 AS deps
 WORKDIR /app
 
 # Root package.json fuer Workspaces
@@ -26,7 +26,7 @@ COPY modules/mission-control/frontend/package.json modules/mission-control/front
 COPY modules/todos/backend/package.json modules/todos/backend/
 COPY modules/todos/frontend/package.json modules/todos/frontend/
 
-RUN bun install --frozen-lockfile || bun install
+RUN bun install
 
 # --- Stage 2: Frontend bauen ---
 FROM deps AS frontend-build
@@ -42,7 +42,7 @@ WORKDIR /app/template/frontend
 RUN bun run build-only
 
 # --- Stage 3: Produktion ---
-FROM oven/bun:1 AS production
+FROM oven/bun:1.2.10 AS production
 WORKDIR /app
 
 # Drizzle-Kit fuer Migrations
