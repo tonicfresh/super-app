@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — LanguageModel types + ModulePlugin validation schema in shared, Registry validation
+- [x] 01-01-PLAN.md — LanguageModel types + ModulePlugin validation schema in shared, Registry validation
 - [ ] 01-02-PLAN.md — Package version sync + Schema prefix fix (push_* to app_*)
 - [ ] 01-03-PLAN.md — Eliminate all as any from production code (backend, frontend, modules)
 
