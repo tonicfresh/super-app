@@ -30,11 +30,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Backend und Frontend package.json verwenden identische Versionen fuer gemeinsame Dependencies
   4. Alle Drizzle-Schema-Tabellen folgen der Prefix-Konvention (base_*, app_*, <modul>_*)
   5. Module Registry validiert Plugin-Struktur bei Registrierung und wirft bei fehlenden Exports
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — LanguageModel types + ModulePlugin validation schema in shared, Registry validation
+- [ ] 01-02-PLAN.md — Package version sync + Schema prefix fix (push_* to app_*)
+- [ ] 01-03-PLAN.md — Eliminate all as any from production code (backend, frontend, modules)
 
 ### Phase 2: Security & AI Stubs
 **Goal**: Kritische Security-Luecken geschlossen und alle gestubten AI-System-Callbacks an echte Implementierungen angebunden
@@ -108,7 +109,7 @@ Note: Phase 3 and Phase 4 can run in parallel (both depend on Phase 2, not on ea
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Type Safety & Consistency | 0/2 | Not started | - |
+| 1. Type Safety & Consistency | 0/3 | Planned | - |
 | 2. Security & AI Stubs | 0/3 | Not started | - |
 | 3. AI System Completion | 0/2 | Not started | - |
 | 4. Spec Audit | 0/3 | Not started | - |
