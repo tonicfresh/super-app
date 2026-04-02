@@ -69,6 +69,9 @@ COPY modules/todos/backend/ modules/todos/backend/
 # Frontend-Build als statische Dateien fuer das Backend
 COPY --from=frontend-build /app/template/frontend/dist ./template/backend/public/
 
+# Symlink: template/modules → ../modules (Backend importiert ../../modules/ relativ zu src/)
+RUN ln -s /app/modules /app/template/modules
+
 ENV NODE_ENV=production
 ENV PORT=3100
 EXPOSE 3100
