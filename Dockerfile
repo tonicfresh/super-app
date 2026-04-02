@@ -1,6 +1,6 @@
 # ============================================================
 # Super App — Produktions-Dockerfile
-# Baut Backend + Frontend, fuehrt Migrations aus und startet den Server
+# Kopiert Source + Dependencies, fuehrt Migrations aus und startet mit bun run
 # ============================================================
 
 # --- Stage 1: Dependencies installieren ---
@@ -32,7 +32,6 @@ RUN bun install --frozen-lockfile || bun install
 FROM deps AS frontend-build
 WORKDIR /app
 
-# Alles kopieren fuer den Build
 COPY shared/ shared/
 COPY themes/ themes/
 COPY template/frontend/ template/frontend/
@@ -42,47 +41,39 @@ COPY modules/todos/frontend/ modules/todos/frontend/
 WORKDIR /app/template/frontend
 RUN bun run build-only
 
-# --- Stage 3: Backend bauen ---
-FROM deps AS backend-build
-WORKDIR /app
-
-COPY shared/ shared/
-COPY template/backend/ template/backend/
-COPY modules/mission-control/backend/ modules/mission-control/backend/
-COPY modules/todos/backend/ modules/todos/backend/
-
-WORKDIR /app/template/backend
-RUN bun build ./src/index.ts --outdir ./dist --target bun --minify
-
-# --- Stage 4: Produktion ---
+# --- Stage 3: Produktion ---
 FROM oven/bun:1 AS production
 WORKDIR /app
 
 # Drizzle-Kit fuer Migrations
 RUN bun i -g drizzle-kit drizzle-orm pg
 
-# Backend-Build kopieren
-COPY --from=backend-build /app/template/backend/dist ./dist/
-COPY --from=backend-build /app/template/backend/package.json ./
-COPY --from=backend-build /app/template/backend/drizzle.config.ts ./
-COPY --from=backend-build /app/template/backend/drizzle-sql ./drizzle-sql/
-COPY --from=backend-build /app/template/backend/framework/drizzle.config.ts ./framework/drizzle.config.ts
-COPY --from=backend-build /app/template/backend/framework/drizzle-sql ./framework/drizzle-sql/
-
-# Frontend-Build als statische Dateien
-COPY --from=frontend-build /app/template/frontend/dist ./public/
-
-# Runtime Dependencies
+# Dependencies aus Stage 1
 COPY --from=deps /app/node_modules ./node_modules/
-COPY --from=deps /app/template/backend/node_modules ./template-node_modules/
+COPY --from=deps /app/template/backend/node_modules ./template/backend/node_modules/
+# shared hat keine eigenen node_modules (Bun Workspace hoisted)
 
-# Statische Dateien (optional — nur kopieren wenn vorhanden)
-RUN mkdir -p ./static
-COPY --from=backend-build /app/template/backend/static ./static/
+# Root package.json
+COPY package.json ./
+
+# Shared Source (wird von Backend importiert)
+COPY shared/ shared/
+
+# Backend Source (inkl. Framework)
+COPY template/backend/ template/backend/
+
+# Module Source (Backend only)
+COPY modules/mission-control/backend/ modules/mission-control/backend/
+COPY modules/todos/backend/ modules/todos/backend/
+
+# Frontend-Build als statische Dateien fuer das Backend
+COPY --from=frontend-build /app/template/frontend/dist ./template/backend/public/
 
 ENV NODE_ENV=production
 ENV PORT=3100
 EXPOSE 3100
 
 # Migrations ausfuehren und Server starten
-CMD ["sh", "-c", "drizzle-kit migrate --config framework/drizzle.config.ts && drizzle-kit migrate && bun ./dist/index.js"]
+# Bun fuehrt TypeScript nativ aus — kein Build-Schritt noetig
+WORKDIR /app/template/backend
+CMD ["sh", "-c", "drizzle-kit migrate --config framework/drizzle.config.ts && drizzle-kit migrate && bun run src/index.ts"]
