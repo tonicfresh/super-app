@@ -155,3 +155,46 @@ export type AgentStatus =
   | "failed"
   | "timeout"
   | "awaiting_approval";
+
+// --- Push Notifications ---
+
+/**
+ * Push-Notification Payload.
+ * Wird von allen Modulen, Agents und dem System verwendet.
+ */
+export interface PushNotification {
+  /** Empfaenger User-ID */
+  userId: string;
+  /** Titel der Notification */
+  title: string;
+  /** Inhalt/Body der Notification */
+  body: string;
+  /** Absender-Modul (z.B. "mail", "todos", "mission-control") */
+  module?: string;
+  /** Aktion bei Klick auf die Notification */
+  action?: PushNotificationAction;
+}
+
+/**
+ * Aktion die bei Klick auf eine Push Notification ausgefuehrt wird.
+ */
+export interface PushNotificationAction {
+  /** Art der Aktion */
+  type: "approval" | "navigate" | "dismiss";
+  /** Deep-Link URL in der PWA (z.B. "/mail/inbox") */
+  url?: string;
+  /** Agent-Session-ID fuer Approval-Aktionen */
+  agentSessionId?: string;
+}
+
+/**
+ * Web Push Subscription (vom Browser empfangen).
+ * Entspricht der PushSubscription Web API.
+ */
+export interface PushSubscriptionData {
+  endpoint: string;
+  keys: {
+    p256dh: string;
+    auth: string;
+  };
+}
