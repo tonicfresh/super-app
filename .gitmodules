@@ -1,0 +1,6 @@
+[submodule "modules/speech"]
+	path = modules/speech
+	url = https://github.com/tonicfresh/super-app-speech.git
+[submodule "template"]
+	path = template
+	url = https://github.com/tonicfresh/template_fullstack-app-toby.git
