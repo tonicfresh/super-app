@@ -37,3 +37,21 @@ export {
   type GuardrailCheckResult,
   type GuardrailCheckerDeps,
 } from "./guardrails";
+
+// --- Theme System ---
+export type {
+  ThemeColorScale,
+  ThemeSurfaceTokens,
+  ThemeBorderTokens,
+  ThemeFontTokens,
+  ThemeShadowTokens,
+  ThemeSpacingTokens,
+  ThemeTokens,
+  ThemeMeta,
+  ThemeDefinition,
+} from "./types";
+
+export {
+  ThemeTokensSchema,
+  ThemeDefinitionSchema,
+} from "./types";

@@ -1,0 +1,101 @@
+/* ============================================================
+ * Cyberpunk Theme — CSS Overrides
+ * Glassmorphism, neon accents, 3D effects, square markers.
+ * ============================================================ */
+
+/* --- Glassmorphism Cards --- */
+.p-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --- 3D Hover-Effekt auf Cards --- */
+.p-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.p-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Quadratische List-Marker --- */
+ul li::marker {
+  content: '■ ';
+  color: var(--p-primary-500);
+}
+
+/* --- Neon Glow auf fokussierte Inputs --- */
+.p-inputtext:focus,
+.p-dropdown:focus,
+.p-textarea:focus {
+  box-shadow: 0 0 0 2px rgba(217, 70, 239, 0.3);
+  border-color: var(--p-primary-500);
+}
+
+/* --- Neon Glow auf Primary Buttons --- */
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-link) {
+  box-shadow: 0 0 16px rgba(217, 70, 239, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined):not(.p-button-link):hover {
+  box-shadow: 0 0 24px rgba(217, 70, 239, 0.5);
+  transform: translateY(-1px);
+}
+
+/* --- Glassmorphism Dialogs/Overlays --- */
+.p-dialog {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Sidebar Glassmorphism --- */
+.p-sidebar {
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* --- Neon Scrollbar (WebKit) --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(217, 70, 239, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 70, 239, 0.5);
+}
+
+/* --- Subtle Neon-Unterstrich fuer aktive Navigation --- */
+.router-link-active {
+  border-bottom: 2px solid var(--p-primary-500);
+  text-shadow: 0 0 8px rgba(217, 70, 239, 0.4);
+}
+
+/* --- Body Background --- */
+body {
+  background-color: var(--p-surface-ground);
+  color: rgba(255, 255, 255, 0.87);
+}
+
+/* --- Transitions fuer alle interaktiven Elemente --- */
+.p-button,
+.p-inputtext,
+.p-dropdown,
+.p-selectbutton,
+.p-tabview-nav-link {
+  transition: all 0.2s ease-in-out;
+}

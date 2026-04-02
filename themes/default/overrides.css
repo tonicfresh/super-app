@@ -1,0 +1,30 @@
+/* ============================================================
+ * Default Theme — CSS Overrides
+ * Minimale Overrides fuer den Standard-Look.
+ * Setzt nur Grundlagen die ueber Tokens hinausgehen.
+ * ============================================================ */
+
+/* Sanfte Transitions fuer alle interaktiven Elemente */
+.p-card,
+.p-button,
+.p-inputtext,
+.p-dropdown,
+.p-selectbutton {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Subtiler Card-Hover */
+.p-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Saubere List-Marker */
+ul li::marker {
+  color: var(--p-primary-500);
+}
+
+/* Focus-Ring fuer Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--p-primary-500);
+  outline-offset: 2px;
+}

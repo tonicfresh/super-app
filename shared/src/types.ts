@@ -198,3 +198,200 @@ export interface PushSubscriptionData {
     auth: string;
   };
 }
+
+// ============================================================
+// Theme System
+// ============================================================
+
+import * as v from "valibot";
+
+/**
+ * Farbskala fuer ein Theme.
+ * Alle Stufen sind optional ausser 500 (Primaerfarbe).
+ */
+export interface ThemeColorScale {
+  50?: string;
+  100?: string;
+  200?: string;
+  300?: string;
+  400?: string;
+  500: string;
+  600?: string;
+  700?: string;
+  800?: string;
+  900?: string;
+}
+
+/** Surface-Tokens: Hintergrundfarben fuer verschiedene Ebenen */
+export interface ThemeSurfaceTokens {
+  /** Haupthintergrund der App */
+  ground: string;
+  /** Kartenhintergrund */
+  card: string;
+  /** Overlay/Modal-Hintergrund */
+  overlay: string;
+}
+
+/** Border-Tokens */
+export interface ThemeBorderTokens {
+  /** Standard Border-Radius */
+  radius: string;
+  /** Grosser Border-Radius (z.B. fuer Cards) */
+  radiusLg?: string;
+  /** Kleiner Border-Radius (z.B. fuer Badges) */
+  radiusSm?: string;
+}
+
+/** Font-Tokens */
+export interface ThemeFontTokens {
+  /** Schrift fuer Ueberschriften */
+  headline: string;
+  /** Schrift fuer Fliesstext */
+  body: string;
+  /** Schrift fuer Code/Monospace */
+  mono?: string;
+}
+
+/** Shadow-Tokens */
+export interface ThemeShadowTokens {
+  /** Schatten fuer Karten */
+  card: string;
+  /** Schatten fuer Overlays/Modals */
+  overlay?: string;
+}
+
+/** Spacing-Tokens */
+export interface ThemeSpacingTokens {
+  xs?: string;
+  sm?: string;
+  md?: string;
+  lg?: string;
+  xl?: string;
+}
+
+/**
+ * Vollstaendige Token-Sammlung eines Themes.
+ * Wird vom Theme-Loader in CSS Custom Properties umgewandelt.
+ */
+export interface ThemeTokens {
+  /** Primaerfarbe */
+  primary: ThemeColorScale;
+  /** Sekundaerfarbe */
+  secondary: ThemeColorScale;
+  /** Erfolgsfarbe */
+  success?: ThemeColorScale;
+  /** Warnfarbe */
+  warning?: ThemeColorScale;
+  /** Fehlerfarbe */
+  danger?: ThemeColorScale;
+  /** Oberflaechenfarben */
+  surface: ThemeSurfaceTokens;
+  /** Border-Einstellungen */
+  border: ThemeBorderTokens;
+  /** Schriften */
+  font: ThemeFontTokens;
+  /** Schatten */
+  shadow: ThemeShadowTokens;
+  /** Abstaende */
+  spacing?: ThemeSpacingTokens;
+}
+
+/**
+ * Metadaten eines Themes.
+ */
+export interface ThemeMeta {
+  /** Eindeutige Theme-ID (z.B. "cyberpunk", "default") */
+  id: string;
+  /** Anzeigename */
+  name: string;
+  /** Beschreibung */
+  description?: string;
+  /** Autor */
+  author?: string;
+  /** Semantic Version */
+  version: string;
+  /** Bevorzugtes Farbschema */
+  colorScheme: "light" | "dark" | "system";
+}
+
+/**
+ * Vollstaendige Theme-Definition: Meta + Tokens.
+ * Dies ist das, was eine theme tokens.ts Datei exportiert.
+ */
+export interface ThemeDefinition {
+  meta: ThemeMeta;
+  tokens: ThemeTokens;
+}
+
+// --- Valibot Schemas ---
+
+const ThemeColorScaleSchema = v.object({
+  50: v.optional(v.string()),
+  100: v.optional(v.string()),
+  200: v.optional(v.string()),
+  300: v.optional(v.string()),
+  400: v.optional(v.string()),
+  500: v.pipe(v.string(), v.minLength(1)),
+  600: v.optional(v.string()),
+  700: v.optional(v.string()),
+  800: v.optional(v.string()),
+  900: v.optional(v.string()),
+});
+
+const ThemeSurfaceSchema = v.object({
+  ground: v.pipe(v.string(), v.minLength(1)),
+  card: v.pipe(v.string(), v.minLength(1)),
+  overlay: v.pipe(v.string(), v.minLength(1)),
+});
+
+const ThemeBorderSchema = v.object({
+  radius: v.pipe(v.string(), v.minLength(1)),
+  radiusLg: v.optional(v.string()),
+  radiusSm: v.optional(v.string()),
+});
+
+const ThemeFontSchema = v.object({
+  headline: v.pipe(v.string(), v.minLength(1)),
+  body: v.pipe(v.string(), v.minLength(1)),
+  mono: v.optional(v.string()),
+});
+
+const ThemeShadowSchema = v.object({
+  card: v.pipe(v.string(), v.minLength(1)),
+  overlay: v.optional(v.string()),
+});
+
+const ThemeSpacingSchema = v.object({
+  xs: v.optional(v.string()),
+  sm: v.optional(v.string()),
+  md: v.optional(v.string()),
+  lg: v.optional(v.string()),
+  xl: v.optional(v.string()),
+});
+
+export const ThemeTokensSchema = v.object({
+  primary: ThemeColorScaleSchema,
+  secondary: ThemeColorScaleSchema,
+  success: v.optional(ThemeColorScaleSchema),
+  warning: v.optional(ThemeColorScaleSchema),
+  danger: v.optional(ThemeColorScaleSchema),
+  surface: ThemeSurfaceSchema,
+  border: ThemeBorderSchema,
+  font: ThemeFontSchema,
+  shadow: ThemeShadowSchema,
+  spacing: v.optional(ThemeSpacingSchema),
+});
+
+const ThemeMetaSchema = v.object({
+  id: v.pipe(v.string(), v.minLength(1)),
+  name: v.pipe(v.string(), v.minLength(1)),
+  description: v.optional(v.string()),
+  author: v.optional(v.string()),
+  version: v.pipe(v.string(), v.minLength(1)),
+  colorScheme: v.picklist(["light", "dark", "system"]),
+});
+
+export const ThemeDefinitionSchema = v.object({
+  meta: ThemeMetaSchema,
+  tokens: ThemeTokensSchema,
+});
