@@ -463,7 +463,7 @@ These apply to **every** module, no exceptions:
 5. **Same styling** — Tailwind CSS v4 with the shared design tokens
 6. **Same validation** — Valibot schemas, shared between frontend and backend where possible
 7. **Same API patterns** — Hono routes following framework conventions (tenant-scoped, permission-checked)
-8. **Same database patterns** — Drizzle ORM, module-prefixed table names, framework migrations, NEVER raw SQL
+8. **Same database patterns** — Drizzle ORM, `pgTableCreator` with module prefix (Framework: `pgBaseTable` → `base_*`, App: `pgAppTable` → `app_*`, Module: eigener Creator → `mail_*`, `todos_*`, `mc_*`, etc.), generated migrations, NEVER raw SQL
 9. **Same auth flow** — framework-managed, never custom
 10. **Same error handling** — framework response helpers
 11. **Same i18n structure** — locale JSON files per module, following the established naming pattern
@@ -476,16 +476,30 @@ These apply to **every** module, no exceptions:
 
 ### Table naming convention
 
-To avoid schema collisions between modules, all tables MUST be prefixed with the module name:
+Three levels of table creators, each with its own prefix:
+
+| Level | Creator | Prefix | Beispiel |
+|-------|---------|--------|----------|
+| **Framework** | `pgBaseTable` | `base_` | `base_users`, `base_tenants` |
+| **App** | `pgAppTable` | `app_` | `app_settings`, `app_config` |
+| **Module** | eigener `pgTableCreator` | `<module>_` | `mail_accounts`, `todos_items` |
+
+Every module creates its own table creator via `pgTableCreator`:
 
 ```typescript
 // modules/mail/backend/src/db/schema.ts
-export const mailAccounts = pgTable("mail_accounts", { ... });
-export const mailMessages = pgTable("mail_messages", { ... });
+import { pgTableCreator, text, timestamp } from "drizzle-orm/pg-core";
+
+const mailTable = pgTableCreator((name) => `mail_${name}`);
+
+export const mailAccounts = mailTable("accounts", { ... });
+export const mailMessages = mailTable("messages", { ... });
 
 // modules/todos/backend/src/db/schema.ts
-export const todosItems = pgTable("todos_items", { ... });
-export const todosLists = pgTable("todos_lists", { ... });
+const todosTable = pgTableCreator((name) => `todos_${name}`);
+
+export const todosItems = todosTable("items", { ... });
+export const todosLists = todosTable("lists", { ... });
 ```
 
 ---

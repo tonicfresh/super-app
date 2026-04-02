@@ -402,9 +402,14 @@ PostgreSQL (super-app)
 
 ```typescript
 // modules/mail/backend/src/db/schema.ts
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTableCreator, text, timestamp, boolean } from "drizzle-orm/pg-core";
 
-export const mailAccounts = pgTable("mail_accounts", {
+// Jedes Modul erstellt seinen eigenen Table Creator mit Prefix.
+// Framework: pgBaseTable (base_*), App: pgAppTable (app_*),
+// Module: eigener Creator (mail_*, todos_*, mc_*, etc.)
+const mailTable = pgTableCreator((name) => `mail_${name}`);
+
+export const mailAccounts = mailTable("accounts", {
   id: text("id").primaryKey(),
   tenantId: text("tenant_id").notNull(),
   name: text("name").notNull(),
@@ -1351,7 +1356,7 @@ These apply to EVERY module, no exceptions:
 5. **Same styling** — Tailwind CSS v4 with shared design tokens
 6. **Same validation** — Valibot schemas, shared between frontend and backend
 7. **Same API patterns** — Hono routes following framework conventions (tenant-scoped, permission-checked)
-8. **Same database patterns** — Drizzle ORM, module-prefixed tables, generated migrations, NEVER raw SQL
+8. **Same database patterns** — Drizzle ORM, `pgTableCreator` with module prefix (Framework: `pgBaseTable` → `base_*`, App: `pgAppTable` → `app_*`, Module: eigener Creator → `mail_*`, `todos_*`, `mc_*`, etc.), generated migrations, NEVER raw SQL
 9. **Same auth flow** — framework-managed, never custom
 10. **Same error handling** — framework response helpers
 11. **Same i18n structure** — locale JSON files per module
