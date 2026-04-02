@@ -1,0 +1,13 @@
+{
+  "name": "super-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "module:create": "bun run scripts/module-create.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.3",
+    "typescript": "^5.9.3"
+  }
+}
