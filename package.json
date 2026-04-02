@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "shared",
+    "template/backend",
+    "template/frontend",
+    "modules/*/backend",
+    "modules/*/frontend"
+  ],
   "scripts": {
     "module:create": "bun run scripts/module-create.ts"
   },
