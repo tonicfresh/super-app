@@ -41,7 +41,7 @@
 
 ### Testing
 
-- [ ] **TEST-01**: E2E Module Integration Tests (Registry → Agent → Tool → Permission)
+- [ ] **TEST-01**: E2E Module Integration Tests (Registry -> Agent -> Tool -> Permission)
 - [ ] **TEST-02**: Hanko Auth Flow Tests (Token, Cache, Expiry)
 - [ ] **TEST-03**: Cost Guardrail Enforcement Integration Tests
 - [ ] **TEST-04**: Privacy System Integration Tests
@@ -78,43 +78,43 @@
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| SEC-01 | Phase 1 | Pending |
-| SEC-02 | Phase 1 | Pending |
-| SEC-03 | Phase 3 | Pending |
-| SEC-04 | Phase 3 | Pending |
-| AI-01 | Phase 2 | Pending |
-| AI-02 | Phase 2 | Pending |
-| AI-03 | Phase 2 | Pending |
-| AI-04 | Phase 2 | Pending |
-| AI-05 | Phase 3 | Pending |
-| AI-06 | Phase 2 | Pending |
-| AI-07 | Phase 2 | Pending |
-| TYPE-01 | Phase 1 | Pending |
-| TYPE-02 | Phase 1 | Pending |
-| TYPE-03 | Phase 1 | Pending |
-| SPEC-01 | Phase 4 | Pending |
-| SPEC-02 | Phase 4 | Pending |
-| SPEC-03 | Phase 4 | Pending |
-| SPEC-04 | Phase 4 | Pending |
-| SPEC-05 | Phase 4 | Pending |
-| SPEC-06 | Phase 4 | Pending |
-| SPEC-07 | Phase 4 | Pending |
-| SPEC-08 | Phase 4 | Pending |
-| TEST-01 | Phase 5 | Pending |
-| TEST-02 | Phase 5 | Pending |
-| TEST-03 | Phase 5 | Pending |
-| TEST-04 | Phase 5 | Pending |
-| CON-01 | Phase 1 | Pending |
-| CON-02 | Phase 1 | Pending |
-| CON-03 | Phase 5 | Pending |
+| Requirement | Phase | Phase Name | Status |
+|-------------|-------|------------|--------|
+| TYPE-01 | Phase 1 | Type Safety & Consistency | Pending |
+| TYPE-02 | Phase 1 | Type Safety & Consistency | Pending |
+| TYPE-03 | Phase 1 | Type Safety & Consistency | Pending |
+| CON-01 | Phase 1 | Type Safety & Consistency | Pending |
+| CON-02 | Phase 1 | Type Safety & Consistency | Pending |
+| SEC-01 | Phase 2 | Security & AI Stubs | Pending |
+| SEC-02 | Phase 2 | Security & AI Stubs | Pending |
+| AI-01 | Phase 2 | Security & AI Stubs | Pending |
+| AI-02 | Phase 2 | Security & AI Stubs | Pending |
+| AI-03 | Phase 2 | Security & AI Stubs | Pending |
+| AI-04 | Phase 2 | Security & AI Stubs | Pending |
+| AI-06 | Phase 2 | Security & AI Stubs | Pending |
+| AI-07 | Phase 2 | Security & AI Stubs | Pending |
+| SEC-03 | Phase 3 | AI System Completion | Pending |
+| SEC-04 | Phase 3 | AI System Completion | Pending |
+| AI-05 | Phase 3 | AI System Completion | Pending |
+| SPEC-01 | Phase 4 | Spec Audit | Pending |
+| SPEC-02 | Phase 4 | Spec Audit | Pending |
+| SPEC-03 | Phase 4 | Spec Audit | Pending |
+| SPEC-04 | Phase 4 | Spec Audit | Pending |
+| SPEC-05 | Phase 4 | Spec Audit | Pending |
+| SPEC-06 | Phase 4 | Spec Audit | Pending |
+| SPEC-07 | Phase 4 | Spec Audit | Pending |
+| SPEC-08 | Phase 4 | Spec Audit | Pending |
+| TEST-01 | Phase 5 | Test Coverage & Documentation | Pending |
+| TEST-02 | Phase 5 | Test Coverage & Documentation | Pending |
+| TEST-03 | Phase 5 | Test Coverage & Documentation | Pending |
+| TEST-04 | Phase 5 | Test Coverage & Documentation | Pending |
+| CON-03 | Phase 5 | Test Coverage & Documentation | Pending |
 
 **Coverage:**
 - v1 requirements: 29 total
 - Mapped to phases: 29
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-02*
-*Last updated: 2026-04-02 after initialization*
+*Last updated: 2026-04-02 after roadmap creation*
