@@ -1,4 +1,5 @@
 import { describe, it, expect } from "bun:test";
+import * as v from "valibot";
 import type {
   ToolResult,
   ToolErrorCode,
@@ -7,7 +8,9 @@ import type {
   ModuleDefinition,
   RouteRecord,
   ModulePlugin,
+  LanguageModelWithMeta,
 } from "./types";
+import { isLanguageModelWithMeta, ModulePluginSchema } from "./types";
 
 describe("Shared Types", () => {
   describe("ToolResult", () => {
@@ -200,6 +203,106 @@ describe("Shared Types", () => {
       };
       expect(plugin.config.name).toBe("mail");
       expect(plugin.tools?.sendMail).toBeDefined();
+    });
+  });
+
+  describe("LanguageModelWithMeta", () => {
+    it("should accept object with provider and modelId", () => {
+      const model = {
+        provider: "anthropic",
+        modelId: "claude-sonnet-4-5",
+        specificationVersion: "v1" as const,
+      };
+      // Type guard sollte true zurueckgeben
+      expect(isLanguageModelWithMeta(model)).toBe(true);
+    });
+
+    it("should return true for object with provider and modelId properties", () => {
+      const model = {
+        provider: "mistral",
+        modelId: "mistral-large",
+        specificationVersion: "v1" as const,
+        doGenerate: async () => ({}),
+        doStream: async () => ({}),
+      };
+      expect(isLanguageModelWithMeta(model)).toBe(true);
+    });
+
+    it("should return false for a string value", () => {
+      expect(isLanguageModelWithMeta("anthropic:claude-sonnet-4-5" as any)).toBe(false);
+    });
+
+    it("should return false for null", () => {
+      expect(isLanguageModelWithMeta(null as any)).toBe(false);
+    });
+
+    it("should return false for undefined", () => {
+      expect(isLanguageModelWithMeta(undefined as any)).toBe(false);
+    });
+  });
+
+  describe("ModulePluginSchema", () => {
+    const validPlugin = {
+      config: {
+        name: "mail",
+        version: "1.0.0",
+        permissions: {
+          base: { read: "mail:read", write: "mail:write", update: "mail:update", delete: "mail:delete" },
+        },
+      },
+    };
+
+    it("should validate a complete valid plugin without throwing", () => {
+      const fullPlugin = {
+        ...validPlugin,
+        schema: { mailAccounts: {} },
+        routes: () => {},
+        jobs: [{ type: "mail:process", handler: async () => {} }],
+        tools: { sendMail: {} },
+      };
+      expect(() => v.parse(ModulePluginSchema, fullPlugin)).not.toThrow();
+    });
+
+    it("should reject plugin with empty config.name", () => {
+      const invalid = {
+        config: {
+          name: "",
+          version: "1.0.0",
+          permissions: {
+            base: { read: "x", write: "x", update: "x", delete: "x" },
+          },
+        },
+      };
+      expect(() => v.parse(ModulePluginSchema, invalid)).toThrow();
+    });
+
+    it("should reject plugin with missing config.version", () => {
+      const invalid = {
+        config: {
+          name: "test",
+          permissions: {
+            base: { read: "x", write: "x", update: "x", delete: "x" },
+          },
+        },
+      };
+      expect(() => v.parse(ModulePluginSchema, invalid)).toThrow();
+    });
+
+    it("should reject plugin with missing permissions.base fields", () => {
+      const invalid = {
+        config: {
+          name: "test",
+          version: "1.0.0",
+          permissions: {
+            base: { read: "x" },
+          },
+        },
+      };
+      expect(() => v.parse(ModulePluginSchema, invalid)).toThrow();
+    });
+
+    it("should accept minimal plugin with config only", () => {
+      expect(() => v.parse(ModulePluginSchema, validPlugin)).not.toThrow();
     });
   });
 });

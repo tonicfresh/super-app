@@ -18,7 +18,11 @@ export type {
   PushNotification,
   PushNotificationAction,
   PushSubscriptionData,
+  LanguageModel,
+  LanguageModelWithMeta,
 } from "./types";
+
+export { isLanguageModelWithMeta, ModulePluginSchema } from "./types";
 
 // --- Cost Tracking ---
 export {

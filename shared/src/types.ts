@@ -2,6 +2,39 @@
 // @super-app/shared — Gemeinsame Typen fuer alle Module
 // ============================================================
 
+import type { LanguageModelV1 } from "@ai-sdk/provider";
+import type { LanguageModel as AILanguageModel } from "ai";
+
+// --- Language Model Types ---
+
+/**
+ * Kanonischer LanguageModel-Typ aus dem AI SDK.
+ * Re-Export fuer konsistente Nutzung in der gesamten Codebase.
+ */
+export type LanguageModel = AILanguageModel;
+
+/**
+ * LanguageModel mit garantierten Meta-Properties (provider, modelId).
+ * Entspricht LanguageModelV1 — hat immer .provider und .modelId.
+ * Nutzen: Typ-sichere Unterscheidung wenn Meta-Zugriff noetig ist.
+ */
+export type LanguageModelWithMeta = LanguageModelV1;
+
+/**
+ * Type Guard: Prueft ob ein Wert ein LanguageModel-Objekt mit
+ * provider und modelId Properties ist (nicht z.B. ein String).
+ */
+export function isLanguageModelWithMeta(
+  model: unknown
+): model is LanguageModelWithMeta {
+  return (
+    typeof model === "object" &&
+    model !== null &&
+    "provider" in model &&
+    "modelId" in model
+  );
+}
+
 // --- Tool System ---
 
 /**
@@ -394,4 +427,35 @@ const ThemeMetaSchema = v.object({
 export const ThemeDefinitionSchema = v.object({
   meta: ThemeMetaSchema,
   tokens: ThemeTokensSchema,
+});
+
+// --- Module Plugin Validation Schema ---
+
+/**
+ * Valibot-Schema zur Validierung der ModulePlugin-Struktur.
+ * Wird vom Module Registry bei der Registrierung verwendet (fail-fast).
+ */
+export const ModulePluginSchema = v.object({
+  config: v.object({
+    name: v.pipe(v.string(), v.minLength(1)),
+    version: v.pipe(v.string(), v.minLength(1)),
+    permissions: v.object({
+      base: v.object({
+        read: v.string(),
+        write: v.string(),
+        update: v.string(),
+        delete: v.string(),
+      }),
+      custom: v.optional(v.record(v.string(), v.string())),
+    }),
+    guardrails: v.optional(v.record(v.string(), v.any())),
+  }),
+  schema: v.optional(v.record(v.string(), v.unknown())),
+  routes: v.optional(
+    v.custom<(app: any) => void>((val) => typeof val === "function")
+  ),
+  jobs: v.optional(
+    v.array(v.object({ type: v.string(), handler: v.any() }))
+  ),
+  tools: v.optional(v.record(v.string(), v.unknown())),
 });
