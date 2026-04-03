@@ -30,8 +30,8 @@
 
 ### Spec-Abgleich (IST vs. SOLL)
 
-- [ ] **SPEC-01**: Phase 1 (Shared Core) gegen tatsaechlichen shared/ Code abgleichen
-- [ ] **SPEC-02**: Phase 2 (Auth & Security) gegen auth/ Code abgleichen
+- [x] **SPEC-01**: Phase 1 (Shared Core) gegen tatsaechlichen shared/ Code abgleichen
+- [x] **SPEC-02**: Phase 2 (Auth & Security) gegen auth/ Code abgleichen
 - [ ] **SPEC-03**: Phase 3 (AI Agent System) gegen ai/ Code abgleichen
 - [ ] **SPEC-04**: Phase 4 (AI Providers & Cost) gegen providers/cost-tracking Code abgleichen
 - [ ] **SPEC-05**: Phase 5 (Mission Control) gegen mission-control Modul abgleichen
