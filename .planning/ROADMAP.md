@@ -47,12 +47,11 @@ Plans:
   3. getSecret/getSetting liefern echte Werte aus Framework-Secrets statt null
   4. dbInsert schreibt AI-Kosten tatsaechlich in die mc_ai_costs Tabelle (verifizierbar per DB-Query)
   5. checkModuleAccess prueft gegen die Permissions-Tabelle statt always-true
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — Settings-Service, Permission-Middleware, Auth-Error-Handler (neue Dateien)
+- [ ] 02-02-PLAN.md — AI-Stubs verdrahten, Security-Middleware aktivieren, Pricing aus Settings
 
 ### Phase 3: AI System Completion
 **Goal**: AI-System hat funktionierenden Approval Workflow, Privacy-Schutz gegen Enumeration, und vollstaendiges Step Tracking
@@ -109,8 +108,8 @@ Note: Phase 3 and Phase 4 can run in parallel (both depend on Phase 2, not on ea
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Type Safety & Consistency | 0/3 | Planned | - |
-| 2. Security & AI Stubs | 0/3 | Not started | - |
+| 1. Type Safety & Consistency | 3/3 | Complete | 2026-04-03 |
+| 2. Security & AI Stubs | 0/2 | Planned | - |
 | 3. AI System Completion | 0/2 | Not started | - |
 | 4. Spec Audit | 0/3 | Not started | - |
 | 5. Test Coverage & Documentation | 0/3 | Not started | - |
