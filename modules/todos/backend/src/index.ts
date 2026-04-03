@@ -1,7 +1,7 @@
 import { todosSchema } from "./db/schema";
 import { todosRoutes, createTodosRoutes } from "./routes/index";
 import { todosJobs } from "./jobs/index";
-import { createTodoService } from "./services/index";
+import { createTodoService, type TodoItem } from "./services/index";
 
 // ============================================================
 // Todos Module — Standalone Mode
@@ -17,8 +17,36 @@ import { createTodoService } from "./services/index";
 const todoService = createTodoService({
   findAll: async () => [],
   findById: async () => null,
-  create: async (input) => ({ id: crypto.randomUUID(), ...input } as any),
-  update: async (_id, input) => input as any,
+  create: async (input) => ({
+    id: crypto.randomUUID(),
+    tenantId: "",
+    title: "",
+    description: null,
+    status: "open" as const,
+    priority: "medium" as const,
+    dueDate: null,
+    assigneeId: null,
+    listId: null,
+    createdBy: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    ...input,
+  }),
+  update: async (_id, input) => ({
+    id: _id,
+    tenantId: "",
+    title: "",
+    description: null,
+    status: "open" as const,
+    priority: "medium" as const,
+    dueDate: null,
+    assigneeId: null,
+    listId: null,
+    createdBy: "",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    ...input,
+  } as TodoItem),
   remove: async () => true,
   count: async () => 0,
 });

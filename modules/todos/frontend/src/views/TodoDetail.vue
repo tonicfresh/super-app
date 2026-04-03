@@ -73,8 +73,8 @@ async function saveChanges() {
   await store.updateTodo(todoId.value, {
     title: editForm.value.title,
     description: editForm.value.description || null,
-    status: editForm.value.status as any,
-    priority: editForm.value.priority as any,
+    status: editForm.value.status as "open" | "in_progress" | "done",
+    priority: editForm.value.priority as "low" | "medium" | "high" | "urgent",
     dueDate: editForm.value.dueDate?.toISOString() || null,
   });
   isEditing.value = false;

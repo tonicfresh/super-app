@@ -65,7 +65,7 @@ function handleTodoClick(id: string) {
 }
 
 async function handleStatusChange(id: string, status: string) {
-  await store.updateTodo(id, { status: status as any });
+  await store.updateTodo(id, { status: status as "open" | "in_progress" | "done" });
 }
 
 async function handleDelete(id: string) {
