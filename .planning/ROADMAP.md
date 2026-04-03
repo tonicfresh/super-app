@@ -61,11 +61,11 @@ Plans:
   1. Sensitive AI-Tool-Operationen erzeugen einen Approval Request in der Datenbank mit Status pending/approved/denied
   2. Wiederholte ID-basierte Zugriffe werden durch Rate Limiting geblockt (HTTP 429)
   3. Agent Steps (Planung, Tool-Aufruf, Ergebnis) werden in mc_agent_sessions geloggt und sind in Mission Control sichtbar
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Approval-Schema, Agent-Session-Tracker und Rate-Limiter erstellen (neue Dateien + Tests)
+- [ ] 03-02-PLAN.md — Stubs in index.ts verdrahten, sessionId-Closure in main-agent, Rate Limiter aktivieren
 
 ### Phase 4: Spec Audit
 **Goal**: Vollstaendiger Abgleich zwischen den 8 Architektur-Specs und dem tatsaechlichen Code — alle Abweichungen dokumentiert und priorisiert
@@ -110,6 +110,6 @@ Note: Phase 3 and Phase 4 can run in parallel (both depend on Phase 2, not on ea
 |-------|----------------|--------|-----------|
 | 1. Type Safety & Consistency | 3/3 | Complete | 2026-04-03 |
 | 2. Security & AI Stubs | 0/2 | Planned | - |
-| 3. AI System Completion | 0/2 | Not started | - |
+| 3. AI System Completion | 0/2 | Planned | - |
 | 4. Spec Audit | 0/3 | Not started | - |
 | 5. Test Coverage & Documentation | 0/3 | Not started | - |
