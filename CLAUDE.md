@@ -8,17 +8,17 @@
 - **Status:** In Entwicklung (Phase 1-8 geplant)
 - **Prioritaet:** Hoch
 
-## Tech Stack (Stand: 2026-04-02)
+## Tech Stack (Stand: 2026-04-03)
 
 ### Backend (`template/backend/package.json`)
 | Paket | Version |
 |-------|---------|
 | Bun | 1.2.10 |
-| Hono.js | 4.10.1 |
-| Drizzle ORM | 0.44.6 |
+| Hono.js | 4.12.10 |
+| Drizzle ORM | 0.45.2 |
 | Vercel AI SDK | 6.0.143 |
 | Valibot | 1.3.1 |
-| pg | 8.16.3 |
+| pg | 8.20.0 |
 | drizzle-kit | 0.31.10 |
 
 ### Frontend
@@ -90,16 +90,16 @@ bun run app:generate
 - **Theming:** Keine hardcodierten Farben/Schatten/Radien — immer Design Tokens
 
 ## Implementierungsphasen
-| Phase | Beschreibung | Status |
-|-------|-------------|--------|
-| 1 | Shared Core (Types, Utils, Registry) | Plan fertig |
-| 2 | Auth & Security (Passkey, Permissions) | Plan fertig |
-| 3 | AI Agent System (Main Agent, Sub-Agents) | Plan fertig |
-| 4 | AI Providers & Cost Tracking | Plan fertig |
-| 5 | Mission Control (Monitoring, Audit) | Plan fertig |
-| 6 | PWA & Push Notifications | Plan fertig |
-| 7 | Theming System | Plan fertig |
-| 8 | Reference Module: Todos | Plan fertig |
+| Phase | Beschreibung | Status | Audit-Grade |
+|-------|-------------|--------|-------------|
+| 1 | Shared Core (Types, Utils, Registry) | Implementiert | 100% |
+| 2 | Auth & Security (Passkey, Permissions) | Implementiert | 96% |
+| 3 | AI Agent System (Main Agent, Sub-Agents) | Implementiert | 88% |
+| 4 | AI Providers & Cost Tracking | Implementiert | 85% |
+| 5 | Mission Control (Monitoring, Audit) | Teilweise (Stub-Deps) | 85% |
+| 6 | PWA & Push Notifications | Implementiert | 90% |
+| 7 | Theming System | Implementiert | 100% |
+| 8 | Reference Module: Todos | Implementiert | 95% |
 
 ## Verbindungen
 - **Framework:** github.com/tonicfresh/template_fullstack-app-toby
