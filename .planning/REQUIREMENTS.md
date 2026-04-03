@@ -36,8 +36,8 @@
 - [ ] **SPEC-04**: Phase 4 (AI Providers & Cost) gegen providers/cost-tracking Code abgleichen
 - [x] **SPEC-05**: Phase 5 (Mission Control) gegen mission-control Modul abgleichen
 - [x] **SPEC-06**: Phase 6 (PWA & Push) gegen push/PWA Code abgleichen
-- [ ] **SPEC-07**: Phase 7 (Theming) gegen themes/ Code abgleichen
-- [ ] **SPEC-08**: Phase 8 (Todos) gegen todos Modul abgleichen
+- [x] **SPEC-07**: Phase 7 (Theming) gegen themes/ Code abgleichen
+- [x] **SPEC-08**: Phase 8 (Todos) gegen todos Modul abgleichen
 
 ### Testing
 
