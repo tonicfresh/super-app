@@ -15,12 +15,12 @@
 ### AI System Stabilisierung
 
 - [x] **AI-01**: getSecret/getSetting an Framework-Secrets anbinden (aktuell return null)
-- [ ] **AI-02**: dbInsert fuer Cost-Logging an Drizzle anbinden (aktuell no-op)
-- [ ] **AI-03**: checkModuleAccess gegen Permissions-Tabelle implementieren (aktuell always true)
-- [ ] **AI-04**: Model-Selection aus Provider-Registry laden (aktuell null as any)
+- [x] **AI-02**: dbInsert fuer Cost-Logging an Drizzle anbinden (aktuell no-op)
+- [x] **AI-03**: checkModuleAccess gegen Permissions-Tabelle implementieren (aktuell always true)
+- [x] **AI-04**: Model-Selection aus Provider-Registry laden (aktuell null as any)
 - [ ] **AI-05**: Agent Step Tracking und Approval Requests in DB loggen (aktuell no-op)
-- [ ] **AI-06**: Cost-Pricing-Tabelle aus Settings laden statt hardcoded
-- [ ] **AI-07**: queryDailyTotal/queryModuleDaily Caching implementieren
+- [x] **AI-06**: Cost-Pricing-Tabelle aus Settings laden statt hardcoded
+- [x] **AI-07**: queryDailyTotal/queryModuleDaily Caching implementieren
 
 ### Type Safety
 

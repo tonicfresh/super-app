@@ -51,7 +51,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Settings-Service, Permission-Middleware, Auth-Error-Handler (neue Dateien)
-- [ ] 02-02-PLAN.md — AI-Stubs verdrahten, Security-Middleware aktivieren, Pricing aus Settings
+- [x] 02-02-PLAN.md — AI-Stubs verdrahten, Security-Middleware aktivieren, Pricing aus Settings
 
 ### Phase 3: AI System Completion
 **Goal**: AI-System hat funktionierenden Approval Workflow, Privacy-Schutz gegen Enumeration, und vollstaendiges Step Tracking
