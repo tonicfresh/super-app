@@ -2,7 +2,7 @@
 // @super-app/shared — Gemeinsame Typen fuer alle Module
 // ============================================================
 
-import type { LanguageModelV1 } from "@ai-sdk/provider";
+import type { LanguageModelV3 } from "@ai-sdk/provider";
 import type { LanguageModel as AILanguageModel } from "ai";
 
 // --- Language Model Types ---
@@ -15,10 +15,10 @@ export type LanguageModel = AILanguageModel;
 
 /**
  * LanguageModel mit garantierten Meta-Properties (provider, modelId).
- * Entspricht LanguageModelV1 — hat immer .provider und .modelId.
+ * Entspricht LanguageModelV3 — hat immer .provider und .modelId.
  * Nutzen: Typ-sichere Unterscheidung wenn Meta-Zugriff noetig ist.
  */
-export type LanguageModelWithMeta = LanguageModelV1;
+export type LanguageModelWithMeta = LanguageModelV3;
 
 /**
  * Type Guard: Prueft ob ein Wert ein LanguageModel-Objekt mit
