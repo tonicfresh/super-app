@@ -99,9 +99,9 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Test-Utils + Cost Guardrail + Privacy Integration Tests
-- [ ] 05-02-PLAN.md — Hanko Auth Flow Integration Test
-- [ ] 05-03-PLAN.md — E2E Module Integration Test + CLAUDE.md Update
+- [x] 05-01-PLAN.md — Test-Utils + Cost Guardrail + Privacy Integration Tests
+- [x] 05-02-PLAN.md — Hanko Auth Flow Integration Test
+- [x] 05-03-PLAN.md — E2E Module Integration Test + CLAUDE.md Update
 
 ## Progress
 

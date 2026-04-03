@@ -41,7 +41,7 @@
 
 ### Testing
 
-- [ ] **TEST-01**: E2E Module Integration Tests (Registry -> Agent -> Tool -> Permission)
+- [x] **TEST-01**: E2E Module Integration Tests (Registry -> Agent -> Tool -> Permission)
 - [x] **TEST-02**: Hanko Auth Flow Tests (Token, Cache, Expiry)
 - [x] **TEST-03**: Cost Guardrail Enforcement Integration Tests
 - [x] **TEST-04**: Privacy System Integration Tests
@@ -50,7 +50,7 @@
 
 - [x] **CON-01**: Backend/Frontend package.json Versionen synchronisieren
 - [x] **CON-02**: Drizzle Schema Table-Prefix Enforcement validieren
-- [ ] **CON-03**: CLAUDE.md gegen tatsaechlichen Code-Stand aktualisieren
+- [x] **CON-03**: CLAUDE.md gegen tatsaechlichen Code-Stand aktualisieren
 
 ## v2 Requirements
 
