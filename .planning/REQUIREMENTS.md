@@ -42,9 +42,9 @@
 ### Testing
 
 - [ ] **TEST-01**: E2E Module Integration Tests (Registry -> Agent -> Tool -> Permission)
-- [ ] **TEST-02**: Hanko Auth Flow Tests (Token, Cache, Expiry)
-- [ ] **TEST-03**: Cost Guardrail Enforcement Integration Tests
-- [ ] **TEST-04**: Privacy System Integration Tests
+- [x] **TEST-02**: Hanko Auth Flow Tests (Token, Cache, Expiry)
+- [x] **TEST-03**: Cost Guardrail Enforcement Integration Tests
+- [x] **TEST-04**: Privacy System Integration Tests
 
 ### Konsistenz
 
