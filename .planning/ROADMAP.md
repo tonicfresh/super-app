@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 - [x] 01-01-PLAN.md — LanguageModel types + ModulePlugin validation schema in shared, Registry validation
 - [x] 01-02-PLAN.md — Package version sync + Schema prefix fix (push_* to app_*)
-- [ ] 01-03-PLAN.md — Eliminate all as any from production code (backend, frontend, modules)
+- [x] 01-03-PLAN.md — Eliminate all as any from production code (backend, frontend, modules)
 
 ### Phase 2: Security & AI Stubs
 **Goal**: Kritische Security-Luecken geschlossen und alle gestubten AI-System-Callbacks an echte Implementierungen angebunden

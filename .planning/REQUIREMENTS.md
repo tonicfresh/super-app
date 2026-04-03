@@ -25,7 +25,7 @@
 ### Type Safety
 
 - [x] **TYPE-01**: LanguageModel Interface in @super-app/shared definieren und exportieren
-- [ ] **TYPE-02**: Alle 11 `as any` Assertions durch korrekte Typen ersetzen
+- [x] **TYPE-02**: Alle 11 `as any` Assertions durch korrekte Typen ersetzen
 - [x] **TYPE-03**: Module Registry Plugin-Validation bei Registrierung
 
 ### Spec-Abgleich (IST vs. SOLL)
