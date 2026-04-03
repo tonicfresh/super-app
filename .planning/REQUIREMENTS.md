@@ -48,8 +48,8 @@
 
 ### Konsistenz
 
-- [ ] **CON-01**: Backend/Frontend package.json Versionen synchronisieren
-- [ ] **CON-02**: Drizzle Schema Table-Prefix Enforcement validieren
+- [x] **CON-01**: Backend/Frontend package.json Versionen synchronisieren
+- [x] **CON-02**: Drizzle Schema Table-Prefix Enforcement validieren
 - [ ] **CON-03**: CLAUDE.md gegen tatsaechlichen Code-Stand aktualisieren
 
 ## v2 Requirements
