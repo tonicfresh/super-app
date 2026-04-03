@@ -96,12 +96,12 @@ Plans:
   3. Cost Guardrail Test verifiziert: Tool-Ausfuehrung wird blockiert wenn Budget ueberschritten
   4. Privacy Test verifiziert: LLM-Kontext enthaelt nur maskierte Daten bei sensiblen Ressourcen
   5. CLAUDE.md Projektstruktur, Tech Stack und Status-Tabelle stimmen mit dem tatsaechlichen Code ueberein
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
-- [ ] 05-03: TBD
+- [ ] 05-01-PLAN.md — Test-Utils + Cost Guardrail + Privacy Integration Tests
+- [ ] 05-02-PLAN.md — Hanko Auth Flow Integration Test
+- [ ] 05-03-PLAN.md — E2E Module Integration Test + CLAUDE.md Update
 
 ## Progress
 
