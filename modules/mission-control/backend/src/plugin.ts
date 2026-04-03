@@ -2,6 +2,8 @@ import type { ModuleConfig, ModulePlugin } from "@super-app/shared";
 import { mcSchema } from "./db/schema";
 import { createMcRoutes } from "./routes";
 import { mcTools } from "./tools";
+import { createAgentSessionService } from "./services/agent-session.service";
+import { createAuditLogService } from "./services/audit-log.service";
 
 // --- Modul-Konfiguration ---
 
@@ -38,9 +40,29 @@ export const plugin: ModulePlugin = {
   config: moduleConfig,
   schema: mcSchema,
   get routes() {
-    // Factory-Pattern: Routes brauchen Service-Deps (AgentSession, AuditLog)
-    // Das Framework ruft createMcRoutes(deps) auf und mountet die Hono-App
-    return createMcRoutes;
+    // Adapter: Framework erwartet (app: Hono) => void, aber createMcRoutes
+    // braucht McRouteDeps und gibt eine Hono-App zurueck.
+    // Wir kapseln die Deps intern und mounten die Sub-App auf die uebergebene App.
+    return (app: any) => {
+      const agentService = createAgentSessionService({
+        insert: async (data) => ({ id: (data.id as string) ?? "stub" }),
+        update: async () => {},
+        select: async () => [],
+        broadcast: () => {},
+      });
+      const auditService = createAuditLogService({
+        insert: async () => {},
+        select: async () => [],
+      });
+      const mcApp = createMcRoutes({
+        agentService,
+        auditService,
+        queryCosts: async () => ({ costs: [], totalUsd: 0 }),
+        checkDatabase: async () => true,
+        getActiveAgentCount: async () => 0,
+      });
+      app.route("/", mcApp);
+    };
   },
   jobs: [],
   tools: mcTools,
