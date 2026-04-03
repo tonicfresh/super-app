@@ -117,6 +117,13 @@ None - no external service configuration required.
 - checkPermission ist Drop-in-Ersatz fuer Framework checkUserPermission
 - createAuthErrorHandler wraps bestehende authAndSetUsersInfo
 
+## Self-Check: PASSED
+
+- All 6 files exist
+- Both commits found (682f729, 40964d2)
+- All 4 exports verified (createSettingsService, createBoundGetSecret, checkPermission, createAuthErrorHandler)
+- 17/17 tests pass
+
 ---
 *Phase: 02-security-ai-stubs*
 *Completed: 2026-04-03*
