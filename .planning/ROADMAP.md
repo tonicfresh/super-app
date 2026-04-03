@@ -78,12 +78,13 @@ Plans:
   2. Alle Abweichungen sind priorisiert (critical / high / medium / low) mit konkretem Fix-Vorschlag
   3. Eine konsolidierte Liste zeigt den Gesamtzustand: wie viel Prozent jeder Spec tatsaechlich implementiert ist
   4. Ergebnisse sind in .planning/ dokumentiert und koennen als Input fuer zukuenftige Feature-Arbeit dienen
-**Plans**: TBD
+**Plans:** 4 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
+- [ ] 04-01-PLAN.md — Spec Audit Phase 1 (Shared Core) + Phase 2 (Auth & Security)
+- [ ] 04-02-PLAN.md — Spec Audit Phase 3 (AI Agent System) + Phase 4 (AI Providers & Cost)
+- [ ] 04-03-PLAN.md — Spec Audit Phase 5 (Mission Control) + Phase 6 (PWA & Push)
+- [ ] 04-04-PLAN.md — Spec Audit Phase 7 (Theming) + Phase 8 (Todos) + Consolidated Summary Report
 
 ### Phase 5: Test Coverage & Documentation
 **Goal**: Kritische Systemflüsse haben Integration Tests und CLAUDE.md spiegelt den tatsaechlichen Code-Stand wider
@@ -113,5 +114,5 @@ Note: Phase 3 and Phase 4 can run in parallel (both depend on Phase 2, not on ea
 | 1. Type Safety & Consistency | 3/3 | Complete | 2026-04-03 |
 | 2. Security & AI Stubs | 0/2 | Planned | - |
 | 3. AI System Completion | 3/4 | In Progress | - |
-| 4. Spec Audit | 0/3 | Not started | - |
+| 4. Spec Audit | 0/4 | Not started | - |
 | 5. Test Coverage & Documentation | 0/3 | Not started | - |
