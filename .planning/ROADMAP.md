@@ -50,7 +50,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Settings-Service, Permission-Middleware, Auth-Error-Handler (neue Dateien)
+- [x] 02-01-PLAN.md — Settings-Service, Permission-Middleware, Auth-Error-Handler (neue Dateien)
 - [ ] 02-02-PLAN.md — AI-Stubs verdrahten, Security-Middleware aktivieren, Pricing aus Settings
 
 ### Phase 3: AI System Completion

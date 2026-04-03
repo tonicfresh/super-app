@@ -7,14 +7,14 @@
 
 ### Security (CRITICAL)
 
-- [ ] **SEC-01**: Permission-Middleware reaktivieren — aktuell komplett deaktiviert (HACK)
-- [ ] **SEC-02**: Hanko Token Verification mit Fallback Error Handling ausstatten
+- [x] **SEC-01**: Permission-Middleware reaktivieren — aktuell komplett deaktiviert (HACK)
+- [x] **SEC-02**: Hanko Token Verification mit Fallback Error Handling ausstatten
 - [ ] **SEC-03**: AI Tool Approval Workflow DB-Storage implementieren (aktuell gestubbt)
 - [ ] **SEC-04**: Privacy ID-Enumeration-Schutz (Rate Limiting, ID-Obscuration)
 
 ### AI System Stabilisierung
 
-- [ ] **AI-01**: getSecret/getSetting an Framework-Secrets anbinden (aktuell return null)
+- [x] **AI-01**: getSecret/getSetting an Framework-Secrets anbinden (aktuell return null)
 - [ ] **AI-02**: dbInsert fuer Cost-Logging an Drizzle anbinden (aktuell no-op)
 - [ ] **AI-03**: checkModuleAccess gegen Permissions-Tabelle implementieren (aktuell always true)
 - [ ] **AI-04**: Model-Selection aus Provider-Registry laden (aktuell null as any)
